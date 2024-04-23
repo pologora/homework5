@@ -1,4 +1,12 @@
 function customFilterUnique(arr, cb) {
+  if (!Array.isArray(arr)) {
+    throw new Error('The first argument must be an array.');
+  }
+
+  if (typeof cb !== 'function') {
+    throw new Error('The second argument must be a callback function.');
+  }
+
   const result = [];
   const hashMap = new Map();
   const cbHashMap = new Map();
