@@ -18,7 +18,7 @@ customFilterUnique(arr, cb);
 
 ```JavaScript
 /**
- * Callback function to filter objects or primitives, hashMap parametr is used to truck uniqueness for
+ * Callback function to filter objects or primitives, set parametr is used to truck uniqueness for
  * an objects, doesn't needed for a primitive values
  * @param {Object | primitive} item - The current item being processed.
  * @param {Set} set  - (Optional) The set used for tracking uniqueness.
@@ -119,12 +119,12 @@ const arr1 = [1, 1, 2, 2, 3, 4, 5];
 const arr2 = [3, 3, 2, 7, 7];
 
 const result = getArrayUnion(arr1, arr2);
-console.log(result); // [4, 5]
+console.log(result); // [1, 4, 5, 7]
 ```
 
 ## Task 5, measureArrayPerformance
 
-### Tests
+### Tests index.js
 
 ```JavaScript
 const miniArr = new Array(10_000).fill(Math.floor(Math.random() * 2));
