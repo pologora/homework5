@@ -19,7 +19,7 @@ customFilterUnique(arr, cb);
 ```JavaScript
 /**
  * Callback function to filter objects or primitives, hashMap parametr is used to truck uniqueness for
- * an objects, don't needed for a primitive values
+ * an objects, doesn't needed for a primitive values
  * @param {Object | primitive} item - The current item being processed.
  * @param {Map} hashMap  - (Optional) The map used for tracking uniqueness.
  * @param {number} index - (Optional) Current element index.
@@ -36,11 +36,42 @@ if (item.age > 22) {
 };
 ```
 
-## Task 2, chunkArray function
+## Task 2, chunkArray, chunkArrayInPlace functions
+
+### Info
+
+- chunkArray - returns new function
+- chunkArrayInPlace - mutates the original array
+
+### Usage
 
 ```JavaScript
 const { chunkArray, chunkArrayInPlace } = require('./tasks/chunkArray');
+
+const arr = [1, 2, 3, 4];
+const chunkSize = 2;
+
+const result = chunkArray(arr, chunkSize);
+console.log(result); // [[1,2], [3,4]]
+console.log(arr); // [1, 2, 3, 4]
+
+chunkArrayInPlace(arr, chunkSize);
+console.log(arr); // [[1,2], [3,4]]
 ```
 
-    - chunkArray - returns new function
-    - chunkArrayInPlace - mutates the original array
+## Task 3, arrayShuffling function
+
+### Info
+
+Utilize Fisher-Yates shuffle algorithm
+
+### Usage
+
+```JavaScript
+const arrayShuffling = require('./tasks/arrayShuffling');
+
+const arr = [1, 2, 3, 4, 5];
+const result = arrayShuffling(arr);
+
+console.log(result); // [2,5,1,3,4]
+```
