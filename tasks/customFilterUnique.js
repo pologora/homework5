@@ -21,7 +21,7 @@ const filterAgeMoreThanTwentyTwoUniqCallback = (item, hashMap) => {
   if (item.age > 22) {
     if (!hashMap.has(item.age)) {
       hashMap.set(item.age);
-      return item;
+      return true;
     }
   }
 };
