@@ -3,11 +3,17 @@ function getArrayUnion(arr1, arr2) {
   const result = [];
 
   arr1.forEach((element) => {
-    hashMap.set(element, (hashMap.get(element) || 0) + 1);
+    if (!hashMap.has(element)) {
+      hashMap.set(element, 1);
+    }
   });
 
-  arr2.forEach((element) => {
-    hashMap.set(element, (hashMap.get(element) || 0) + 1);
+  new Set(arr2).forEach((element) => {
+    if (!hashMap.has(element)) {
+      hashMap.set(element, 1);
+    } else {
+      hashMap.set(element, 2);
+    }
   });
 
   hashMap.forEach((value, key) => {
