@@ -13,6 +13,7 @@ const bigArr = new Array(1_000_000).fill(Math.floor(Math.random() * 2));
 const hugeArr = new Array(1_000_000_0).fill(Math.floor(Math.random() * 2));
 
 function forloop(arr) {
+  // eslint-disable-next-line no-empty
   for (let i = 0; i < arr.length; i++) {}
 }
 
