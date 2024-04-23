@@ -1,5 +1,9 @@
 ## Task 1, customFilterUnique function
 
+```JavaScript
+const { customFilterUnique } = require('./tasks/customFilterUnique');
+```
+
 ```javascript
 /**
  * Filters an array based on a callback function and ensures uniqueness.
@@ -31,3 +35,12 @@ if (item.age > 22) {
   }
 };
 ```
+
+## Task 2, chunkArray function
+
+```JavaScript
+const { chunkArray, chunkArrayInPlace } = require('./tasks/chunkArray');
+```
+
+    - chunkArray - returns new function
+    - chunkArrayInPlace - mutates the original array
