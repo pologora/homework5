@@ -21,15 +21,23 @@ customFilterUnique(arr, cb);
  * Callback function to filter objects or primitives, hashMap parametr is used to truck uniqueness for
  * an objects, doesn't needed for a primitive values
  * @param {Object | primitive} item - The current item being processed.
- * @param {Map} hashMap  - (Optional) The map used for tracking uniqueness.
+ * @param {Set} set  - (Optional) The set used for tracking uniqueness.
  * @param {number} index - (Optional) Current element index.
  * @param {Array} array - (Optional) An array on which the callback function elements is called.
  * @returns {boolean} - Returns true if the item meets the criteria, otherwise returns false.
  */
-const cb = (item, hashMap, index, array) => {
+
+const arr = [
+      { name: 'liza1', age: 22 },
+      { name: 'liza2', age: 23 },
+      { name: 'liza3', age: 25 },
+      { name: 'liza4', age: 25 },
+    ];
+
+const cb = (item, set, index, array) => {
 if (item.age > 22) {
-    if (!hashMap.has(item.age)) {
-      hashMap.set(item.age);
+    if (!set.has(item.age)) {
+      set.add(item.age);
       return true;
     }
   }

@@ -8,15 +8,15 @@ function customFilterUnique(arr, cb) {
   }
 
   const result = [];
-  const hashMap = new Map();
-  const cbHashMap = new Map();
+  const set = new Set();
+  const cbSet = new Set();
 
   for (let i = 0; i < arr.length; i++) {
     const element = arr[i];
 
-    if (cb(element, cbHashMap, i, arr)) {
-      if (!hashMap.has(element)) {
-        hashMap.set(element);
+    if (cb(element, cbSet, i, arr)) {
+      if (!set.has(element)) {
+        set.add(element);
         result.push(element);
       }
     }
@@ -25,10 +25,10 @@ function customFilterUnique(arr, cb) {
   return result;
 }
 
-const filterAgeMoreThanTwentyTwoUniqCallback = (item, hashMap) => {
+const filterAgeMoreThanTwentyTwoUniqCallback = (item, set) => {
   if (item.age > 22) {
-    if (!hashMap.has(item.age)) {
-      hashMap.set(item.age);
+    if (!set.has(item.age)) {
+      set.add(item.age);
       return true;
     }
   }
