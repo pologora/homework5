@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 const { customFilterUnique, filterAgeMoreThanTwentyTwoUniqCallback } = require('./tasks/customFilterUnique');
 const { chunkArray, chunkArrayInPlace } = require('./tasks/chunkArray');
-const arrayShuffling = require('./tasks/customShuffle');
+const customShuffle = require('./tasks/customShuffle');
 const getArrayIntersection = require('./tasks/getArrayIntersection');
 const getArrayUnion = require('./tasks/getArrayUnion');
 const measureArrayPerformance = require('./tasks/measureArrayPerformance');
@@ -17,84 +17,58 @@ function forloop(arr) {
   for (let i = 0; i < arr.length; i++) {}
 }
 
-function map(arr, cb) {
-  arr.map(cb);
+function map(arr) {
+  arr.map((i) => i);
 }
 
-function filter(arr, cb) {
-  arr.filter(cb);
+function filter(arr) {
+  arr.filter((i) => i === 1);
 }
 
-function reduce(arr, cb) {
-  arr.reduce(cb);
+function reduce(arr) {
+  arr.reduce((acc, i) => acc + i, 1);
 }
 
-function foreach(arr, cb) {
-  arr.forEach(cb);
+function foreach(arr) {
+  arr.forEach(() => {});
 }
 
-console.log('------------ for loop --------------');
-measureArrayPerformance(forloop, miniArr);
-measureArrayPerformance(forloop, midArr);
-measureArrayPerformance(forloop, bigArr);
-measureArrayPerformance(forloop, hugeArr);
+function testCustomFilterUnique(arr) {
+  customFilterUnique(arr, (i) => i > 0);
+}
 
-console.log('--------- Foreach ----------');
-measureArrayPerformance(foreach, miniArr, (i) => i > 0);
-measureArrayPerformance(foreach, midArr, (i) => i > 0);
-measureArrayPerformance(foreach, bigArr, (i) => i > 0);
-measureArrayPerformance(foreach, hugeArr, (i) => i > 0);
+function testChunkArrayByTwo(arr) {
+  chunkArray(arr, 2);
+}
 
-console.log('--------- Array Shuffling ------------');
-measureArrayPerformance(arrayShuffling, miniArr);
-measureArrayPerformance(arrayShuffling, midArr);
-measureArrayPerformance(arrayShuffling, bigArr);
-measureArrayPerformance(arrayShuffling, hugeArr);
+function testChunkArrayByTwoInPlace(arr) {
+  chunkArrayInPlace(arr, 2);
+}
 
-console.log('--------- Chunk Array ----------');
-measureArrayPerformance(chunkArray, miniArr, 2);
-measureArrayPerformance(chunkArray, midArr, 2);
-measureArrayPerformance(chunkArray, bigArr, 2);
-measureArrayPerformance(chunkArray, hugeArr, 2);
+function testGetArrayIntersection(arr) {
+  getArrayIntersection(arr, arr);
+}
 
-console.log('--------- Chunk Array In Place----------');
-measureArrayPerformance(chunkArrayInPlace, miniArr, 2);
-measureArrayPerformance(chunkArrayInPlace, midArr, 2);
-measureArrayPerformance(chunkArrayInPlace, bigArr, 2);
-measureArrayPerformance(chunkArrayInPlace, hugeArr, 2);
+function testGetArrayUnion(arr) {
+  getArrayUnion(arr, arr);
+}
 
-console.log('--------- Intersection Array ----------');
-measureArrayPerformance(getArrayIntersection, miniArr, miniArr);
-measureArrayPerformance(getArrayIntersection, midArr, midArr);
-measureArrayPerformance(getArrayIntersection, bigArr, bigArr);
-measureArrayPerformance(getArrayIntersection, hugeArr, hugeArr);
+const functionsList = [
+  forloop,
+  map,
+  filter,
+  reduce,
+  foreach,
+  testCustomFilterUnique,
+  testChunkArrayByTwo,
+  testChunkArrayByTwoInPlace,
+  customShuffle,
+  testGetArrayIntersection,
+  testGetArrayUnion,
+];
 
-console.log('--------- Union Array ----------');
-measureArrayPerformance(getArrayUnion, miniArr, miniArr);
-measureArrayPerformance(getArrayUnion, midArr, midArr);
-measureArrayPerformance(getArrayUnion, bigArr, bigArr);
-measureArrayPerformance(getArrayUnion, hugeArr, hugeArr);
+for (let i = 0; i < functionsList.length; i++) {
+  const executionTime = measureArrayPerformance(functionsList[i], hugeArr);
 
-console.log('--------- Filter Uniq Array ----------');
-measureArrayPerformance(customFilterUnique, miniArr, (i) => i > 0);
-measureArrayPerformance(customFilterUnique, midArr, (i) => i > 0);
-measureArrayPerformance(customFilterUnique, bigArr, (i) => i > 0);
-measureArrayPerformance(customFilterUnique, hugeArr, (i) => i > 0);
-
-console.log('--------- Map ----------');
-measureArrayPerformance(map, miniArr, (i) => i + 1);
-measureArrayPerformance(map, midArr, (i) => i + 1);
-measureArrayPerformance(map, bigArr, (i) => i + 1);
-measureArrayPerformance(map, hugeArr, (i) => i + 1);
-
-console.log('--------- Filter ----------');
-measureArrayPerformance(filter, miniArr, (i) => i > 0);
-measureArrayPerformance(filter, midArr, (i) => i > 0);
-measureArrayPerformance(filter, bigArr, (i) => i > 0);
-measureArrayPerformance(filter, hugeArr, (i) => i > 0);
-
-console.log('--------- Reduce ----------');
-measureArrayPerformance(reduce, miniArr, (acc, i) => acc + i, 0);
-measureArrayPerformance(reduce, midArr, (acc, i) => acc + i, 0);
-measureArrayPerformance(reduce, bigArr, (acc, i) => acc + i, 0);
-measureArrayPerformance(reduce, hugeArr, (acc, i) => acc + i, 0);
+  console.log(`Function ${functionsList[i].name} - ${executionTime.toFixed(2)}`);
+}

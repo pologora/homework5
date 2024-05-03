@@ -1,9 +1,9 @@
 function measureArrayPerformance(fn, arr, ...args) {
-  let start = performance.now();
+  const start = performance.now();
   fn(arr, ...args);
-  let timeTaken = performance.now() - start;
-  // eslint-disable-next-line no-console
-  console.log('Total time taken : ' + timeTaken + ' milliseconds');
+  const timeTaken = performance.now() - start;
+
+  return timeTaken;
 }
 
 module.exports = measureArrayPerformance;
