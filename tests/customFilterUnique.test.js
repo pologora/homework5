@@ -16,7 +16,7 @@ describe('Custom uniq', () => {
   test('should filter uniq', () => {
     const arr = [1, 2, 2, 3, 3, 4, 4, 5, 6];
     const cb = (item) => item > 2;
-    expect(customFilterUnique(arr, cb)).toEqual([3, 4, 5, 6]);
+    expect(customFilterUnique(arr, cb)).toEqual([5, 6]);
   });
 
   test('should filter uniq array with objects', () => {
@@ -28,18 +28,12 @@ describe('Custom uniq', () => {
       { name: 'liza', age: 25 },
     ];
 
-    const cb = (item, set) => {
+    const cb = (item) => {
       if (item.age > 22) {
-        if (!set.has(item.age)) {
-          set.add(item.age);
-          return true;
-        }
+        return true;
       }
     };
 
-    expect(customFilterUnique(arr, cb)).toEqual([
-      { name: 'liza', age: 23 },
-      { name: 'liza', age: 25 },
-    ]);
+    expect(customFilterUnique(arr, cb)).toEqual([{ name: 'liza', age: 23 }]);
   });
 });

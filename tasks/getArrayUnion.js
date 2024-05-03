@@ -1,26 +1,19 @@
 function getArrayUnion(arr1, arr2) {
-  const hashMap = new Map();
+  const firstArrSet = new Set(arr1);
+  const secondArrSet = new Set(arr2);
   const result = [];
 
-  arr1.forEach((element) => {
-    if (!hashMap.has(element)) {
-      hashMap.set(element, 1);
+  for (let i = 0; i < arr1.length; i++) {
+    if (!secondArrSet.has(arr1[i])) {
+      result.push(arr1[i]);
     }
-  });
+  }
 
-  new Set(arr2).forEach((element) => {
-    if (!hashMap.has(element)) {
-      hashMap.set(element, 1);
-    } else {
-      hashMap.set(element, 2);
+  for (let i = 0; i < arr2.length; i++) {
+    if (!firstArrSet.has(arr2[i])) {
+      result.push(arr2[i]);
     }
-  });
-
-  hashMap.forEach((value, key) => {
-    if (value === 1) {
-      result.push(key);
-    }
-  });
+  }
 
   return result;
 }

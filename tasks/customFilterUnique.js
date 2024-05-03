@@ -7,30 +7,38 @@ function customFilterUnique(arr, cb) {
     throw new Error('The second argument must be a callback function.');
   }
 
-  const result = [];
-  const set = new Set();
-  const cbSet = new Set();
+  const map = new Map();
+  const oneElement = 1;
+  const moreThanOneElement = 2;
 
   for (let i = 0; i < arr.length; i++) {
     const element = arr[i];
 
-    if (cb(element, cbSet, i, arr)) {
-      if (!set.has(element)) {
-        set.add(element);
-        result.push(element);
+    if (cb(element, map, i, arr)) {
+      if (map.has(element)) {
+        map.set(element, moreThanOneElement);
+      } else {
+        map.set(element, oneElement);
       }
     }
   }
 
+  const result = [];
+
+  map.forEach((value, key) => {
+    if (value === oneElement) {
+      result.push(key);
+    }
+  });
+
+  console.log(result);
+
   return result;
 }
 
-const filterAgeMoreThanTwentyTwoUniqCallback = (item, set) => {
+const filterAgeMoreThanTwentyTwoUniqCallback = (item) => {
   if (item.age > 22) {
-    if (!set.has(item.age)) {
-      set.add(item.age);
-      return true;
-    }
+    return true;
   }
 };
 
