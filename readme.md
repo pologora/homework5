@@ -21,7 +21,6 @@ customFilterUnique(arr, cb);
  * Callback function to filter objects or primitives, set parametr is used to truck uniqueness for
  * an objects, doesn't needed for a primitive values
  * @param {Object | primitive} item - The current item being processed.
- * @param {Set} set  - (Optional) The set used for tracking uniqueness.
  * @param {number} index - (Optional) Current element index.
  * @param {Array} array - (Optional) An array on which the callback function elements is called.
  * @returns {boolean} - Returns true if the item meets the criteria, otherwise returns false.
@@ -36,10 +35,7 @@ const arr = [
 
 const cb = (item, set, index, array) => {
 if (item.age > 22) {
-    if (!set.has(item.age)) {
-      set.add(item.age);
-      return true;
-    }
+    return item.age
   }
 };
 ```
