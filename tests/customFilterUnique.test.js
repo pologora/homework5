@@ -15,7 +15,11 @@ describe('Custom uniq', () => {
 
   test('should filter uniq', () => {
     const arr = [1, 2, 2, 3, 3, 4, 4, 5, 6];
-    const cb = (item) => item > 2;
+    const cb = (item) => {
+      if (item > 2) {
+        return item;
+      }
+    };
     expect(customFilterUnique(arr, cb)).toEqual([5, 6]);
   });
 
@@ -30,10 +34,10 @@ describe('Custom uniq', () => {
 
     const cb = (item) => {
       if (item.age > 22) {
-        return true;
+        return item.age;
       }
     };
 
-    expect(customFilterUnique(arr, cb)).toEqual([{ name: 'liza', age: 23 }]);
+    expect(customFilterUnique(arr, cb)).toEqual([23]);
   });
 });
