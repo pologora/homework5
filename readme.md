@@ -38,6 +38,8 @@ if (item.age > 22) {
     return item.age
   }
 };
+
+// result [23]
 ```
 
 ## Task 2, chunkArray, chunkArrayInPlace functions
