@@ -1,4 +1,4 @@
-function arrayShuffling(arr) {
+function customShuffle(arr) {
   const array = [...arr];
   const length = array.length;
 
@@ -11,4 +11,4 @@ function arrayShuffling(arr) {
   return array;
 }
 
-module.exports = arrayShuffling;
+module.exports = customShuffle;
