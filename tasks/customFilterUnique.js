@@ -14,11 +14,13 @@ function customFilterUnique(arr, cb) {
   for (let i = 0; i < arr.length; i++) {
     const element = arr[i];
 
-    if (cb(element, map, i, arr)) {
-      if (map.has(element)) {
-        map.set(element, moreThanOneElement);
+    const result = cb(element, i, arr);
+
+    if (result) {
+      if (map.has(result)) {
+        map.set(result, moreThanOneElement);
       } else {
-        map.set(element, oneElement);
+        map.set(result, oneElement);
       }
     }
   }
@@ -31,14 +33,12 @@ function customFilterUnique(arr, cb) {
     }
   });
 
-  console.log(result);
-
   return result;
 }
 
 const filterAgeMoreThanTwentyTwoUniqCallback = (item) => {
   if (item.age > 22) {
-    return true;
+    return item.age;
   }
 };
 
